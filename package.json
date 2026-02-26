@@ -1,18 +1,18 @@
 {
-  "name": "developer-blog-starter-code",
-  "version": "0.1.0",
+  "name": "nextjs-sanity-blog",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint",
-    "content": "velite --clean"
+    "lint": "next lint"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.12.0",
-    "@supabase/supabase-js": "^2.47.9",
+    "@portabletext/react": "^3.1.0",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.72.0",
     "@tailwindcss/forms": "^0.5.5",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.20",
@@ -21,22 +21,18 @@
     "eslint-config-next": "^15.1.1",
     "github-slugger": "^2.0.0",
     "next": "^15.2.4",
-    "next-sitemap": "^4.2.2",
+    "next-sanity": "^9.8.0",
     "postcss": "^8.4.49",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.45.4",
     "reading-time": "^1.5.0",
-    "rehype-autolink-headings": "^7.1.0",
-    "rehype-pretty-code": "^0.14.0",
-    "rehype-slug": "^6.0.0",
-    "remark-gfm": "^4.0.0",
-    "shiki": "^1.24.2",
+    "sanity": "^3.72.0",
+    "styled-components": "^6.1.0",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "encoding": "^0.1.13",
-    "sharp": "^0.32.6",
-    "velite": "^0.2.1"
+    "sharp": "^0.32.6"
   }
 }
