@@ -1,13 +1,41 @@
 import { NextResponse } from "next/server";
-import { writeClient } from "../../../../sanity/lib/client";
+import { writeClient, client } from "../../../../sanity/lib/client";
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const slug = searchParams.get("slug");
+
+    if (!slug) {
+      return NextResponse.json(
+        { error: "Missing slug parameter" },
+        { status: 400 }
+      );
+    }
+
+    const post = await client.fetch(
+      `*[_type == "post" && slug.current == $slug][0]{ viewCount }`,
+      { slug }
+    );
+
+    return NextResponse.json({ viewCount: post?.viewCount || 0 });
+  } catch (error) {
+    console.error("Error fetching view count:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch view count" },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(request: Request) {
   try {
-    const { slug } = await request.json();
+    const { searchParams } = new URL(request.url);
+    const slug = searchParams.get("slug");
 
-    if (!slug || typeof slug !== "string") {
+    if (!slug) {
       return NextResponse.json(
-        { error: "Invalid slug parameter" },
+        { error: "Missing slug parameter" },
         { status: 400 }
       );
     }

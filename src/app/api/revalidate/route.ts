@@ -11,15 +11,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
     }
 
-    // Revalidate based on content type
+    // Revalidate based on content type - tags match those used in sanityFetch
     switch (_type) {
       case "post":
-        revalidateTag("posts");
-        revalidateTag("featured");
-        revalidateTag("recent");
+        revalidateTag("post");
         break;
       case "category":
-        revalidateTag("categories");
+        revalidateTag("category");
+        break;
+      case "tag":
+        revalidateTag("tag");
         break;
       case "author":
         revalidateTag("author");
@@ -34,11 +35,15 @@ export async function POST(request: Request) {
         revalidateTag("navigation");
         break;
       case "comment":
-        revalidateTag("comments");
+        revalidateTag("comment");
+        break;
+      case "page":
+        revalidateTag("page");
         break;
       default:
         // Revalidate everything for unknown types
-        revalidateTag("posts");
+        revalidateTag("post");
+        revalidateTag("category");
         revalidateTag("settings");
     }
 
